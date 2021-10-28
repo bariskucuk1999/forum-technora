@@ -14,7 +14,7 @@ namespace EntityLayer.Concrete
         [StringLength(500)]
         public string CommentText { get; set; }
         public DateTime CommentCreationDate { get; set; }
-        public int UserID { get; set; }
+        public int? UserID { get; set; }
         public virtual User User { get; set; }
 
         public int PostID { get; set; }

@@ -1,0 +1,61 @@
+﻿@using EntityLayer.Concrete
+@model List<User>
+
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_TopNavbar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="description" content="Teknoloji konularını barındıran paylaşım ve haber forumu">
+    <meta name="keywords" content="teknoloji, forum, yazılım, post, haber, soru, cevap">
+    <!--tablet, pc, telefon için ekran çözünürlüğünü ve yakınlaştırmasını oto değiştirme-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Üye Ol</title>
+    <style>
+        label{
+            font-weight:600;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h3 style="text-align:center;">Üye Ol</h3>
+        <hr />
+        <form class="form-control col-md-4 mx-auto bg-info">
+            <div class="form-group">
+                <label for="username">Ad:</label>
+                <input type="text" class="form-control" id="username" placeholder="Adınız">
+            </div>
+            <div class="form-group">
+                <label for="userlastname">Soyad:</label>
+                <input type="text" class="form-control" id="userlastname" placeholder="Soyadınız">
+            </div>
+
+            <div class="form-group">
+                <label for="nickname">Nickname:</label>
+                <input type="text" class="form-control" id="nickname" placeholder="Nickname">
+            </div>
+            <div class="form-group">
+                <label for="email">E-posta:</label>
+                <input type="email" class="form-control" id="email" placeholder="E-posta adresi">
+            </div>
+            <div class="form-group">
+                <label for="password">Şifre:</label>
+                <input type="password" class="form-control" id="password" placeholder="Yeni şifre">
+                <label style="font-size:small; color:crimson">*Şifrenizde en az bir harf ve rakam bulunmalıdır.</label>
+            </div>
+            <div class="form-group">
+                <label for="userbirthday">Doğum tarihi:</label>
+                <input type="date" class="form-control" id="userbirthday">
+            </div>
+                <button type="submit" class="btn btn-warning">Üye ol</button>
+        </form>
+    </div>
+</body>
+</html>
+

@@ -9,10 +9,11 @@ namespace EntityLayer.Concrete
 {
     public class Login
     {
+        [Key]
+        public int LoginID { get; set; }
         public string Email { get; set; }
         [StringLength(16)]
-        public string Username { get; set; }
-        [StringLength(20)]
         public string Password { get; set; }
+
     }
 }

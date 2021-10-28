@@ -6,9 +6,10 @@ using System.Web.Mvc;
 
 namespace ForumTechnora.Controllers
 {
-    public class HomeController : Controller
+    public class SignUpController : Controller
     {
-        public ActionResult Index()
+        // GET: SignUp
+        public ActionResult SignUp()
         {
             return View();
         }
