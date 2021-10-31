@@ -12,5 +12,13 @@ namespace ForumTechnora.Controllers
         {
             return View();
         }
+        public ActionResult Posts()
+        {
+            return View();
+        }
+        public ActionResult News()
+        {
+            return View();
+        }
     }
 }
