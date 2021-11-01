@@ -9,10 +9,15 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <style>
-        a:hover {
-            background-color: #17a2b8;
-            border-radius: 5px 5px 5px 5px;
+        :root {
+            --main-bg-color: #17a2b8;
+            --main-border-radius: 5px 5px 5px 5px;
         }
+        a:hover {
+            background-color: var(--main-bg-color);
+            border-radius: var(--main-border-radius);
+        }
+
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -20,7 +25,7 @@
     <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-primary" id="navbar-theme">
         <!--768 pixel'e kadar top navbar görünür durumda-->
         <div class="collapse navbar-collapse">
-            <a style="background-color:transparent;" class="navbar-brand" href="/Home/Index">FORUM TECHNORA</a>
+            <a style="background-color: transparent;" class="navbar-brand" href="/Home/Index">FORUM TECHNORA</a>
             <ul class="navbar-nav mx-auto">
                 <!--sağ ve sol margin'ler auto center-->
                 <li class="nav-item active">
@@ -29,6 +34,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/Home/News">Haber</a>
                 </li>
+
                 <li class="nav-item active">
                     <a class="nav-link" href="/Home/Posts">Paylaşımlar</a>
                 </li>

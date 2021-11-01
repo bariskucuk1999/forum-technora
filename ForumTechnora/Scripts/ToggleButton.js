@@ -12,6 +12,10 @@ button.addEventListener("change", function () {
         element2.forEach(function (el) {
             el.style.color = "black";
         })
+        getComputedStyle(document.documentElement)
+            .getPropertyValue("--main-bg-color");
+        document.documentElement.style
+            .setProperty("--main-bg-color", "#17a2b8");
         bodyDarkMode(false);
         status = true;
     }
@@ -20,12 +24,16 @@ button.addEventListener("change", function () {
         document.querySelector(".dropdown-menu").className = "dropdown-menu dropdown-menu-right bg-dark";
         const element = document.querySelectorAll("a, span, label");
         element.forEach(function (el) {
-            el.style.color = "#99ff33";
+            el.style.color = "#ff6600";
         })
         const element2 = document.querySelectorAll(".form-control label"); //SignUp form ekranı elemanlarına erişim
         element2.forEach(function (el) {
             el.style.color = "black";
         })
+        getComputedStyle(document.documentElement)
+            .getPropertyValue("--main-bg-color");
+        document.documentElement.style
+            .setProperty("--main-bg-color", "white");
         bodyDarkMode(true);
         status = false;
     }
