@@ -20,8 +20,8 @@ namespace EntityLayer.Concrete
         public string Password { get; set; }
         [StringLength(16)]
         public string NickName { get; set; }
-        public DateTime UserBirthday { get; set; }
-        public DateTime CreationDate { get; set; }
+        public string UserBirthday { get; set; }
+        public string CreationDate { get; set; }
         public ICollection<Post> Posts { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Vote> Votes { get; set; }
