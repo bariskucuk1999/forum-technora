@@ -11,9 +11,11 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int PostID { get; set; }
+        [StringLength(64)]
+        public string PostTitle { get; set; }
         [StringLength(5000)]
         public string PostText { get; set; }
-        public DateTime PostCreationDate { get; set; }
+        public string PostCreationDate { get; set; }
         public int UserID { get; set; }
         public virtual User User { get; set; }
         public int CategoryID { get; set; }

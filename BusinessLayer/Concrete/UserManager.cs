@@ -11,7 +11,9 @@ namespace BusinessLayer.Concrete
     public class UserManager
     {
         GenericRepository<User> user = new GenericRepository<User>();
+        GenericRepository<Post> post = new GenericRepository<Post>();
         public List<User> GetData() => user.List();
+        public List<Post> GetPost() => post.List();
         public void AddUser(User p)
         {
             if (p.Password == "")
@@ -22,6 +24,10 @@ namespace BusinessLayer.Concrete
             {
                 user.Insert(p);
             }
+        }
+        public void CreatePost(Post p)
+        {
+            post.Insert(p);
         }
     }
 }
