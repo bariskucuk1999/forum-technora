@@ -1,0 +1,65 @@
+﻿@using EntityLayer.Concrete
+@model List<User>
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_TopNavbar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="description" content="Teknoloji konularını barındıran paylaşım ve haber forumu">
+    <meta name="keywords" content="teknoloji, forum, yazılım, post, haber, soru, cevap">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap</title>
+    <style>
+        label {
+            color: black;
+            font-weight: 600;
+        }
+
+        #login-form {
+            border-radius: 5px 5px 5px 5px;
+        }
+
+        .dropdown-item {
+            border-color: gray;
+            border-radius: 5px 5px 5px 5px;
+            border-width: 1px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-4 mx-auto bg-success" id="login-form">
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+            {
+                <h4 style="text-align:center; color:black;">Giriş Yap</h4>
+                <div class="form-group">
+                    <label for="email">E-posta:</label>
+                    <input type="email" class="form-control" id="email" name="Email" placeholder="E-posta adresiniz">
+                </div>
+                <div class="form-group">
+                    <label for="password">Şifre:</label>
+                    <input type="password" class="form-control" id="password" name="Password" placeholder="Şifreniz">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input">
+                    <label class="form-check-label">
+                        Şifreyi göster
+                    </label>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-warning">Giriş yap</button>
+            }
+            <br />
+            <a class="dropdown-item" href="/SignUp/SignUp">Üye olmak istiyorum</a>
+            <a class="dropdown-item" href="#">Şifremi unuttum</a>
+        </div>
+    </div>
+</body>
+</html>
+

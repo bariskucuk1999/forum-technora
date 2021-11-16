@@ -1,7 +1,5 @@
 ﻿
-@{
-    Layout = null;
-}
+@{ Layout = null; }
 
 <!DOCTYPE html>
 
@@ -13,6 +11,7 @@
             --main-bg-color: #17a2b8;
             --main-border-radius: 5px 5px 5px 5px;
         }
+
         a:hover {
             background-color: var(--main-bg-color);
             border-radius: var(--main-border-radius);
@@ -51,32 +50,8 @@
                 <button class="btn btn-info" type="submit">Ara</button>
             </form>
             <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" data-toggle="dropdown">
-                        Giriş yap
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <form class="px-4 py-3">
-                            <div class="form-group">
-                                <label for="email">E-posta:</label>
-                                <input type="email" class="form-control" id="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Şifre:</label>
-                                <input type="password" class="form-control" id="password">
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input">
-                                <label class="form-check-label">
-                                    Şifreyi göster
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Giriş yap</button>
-                        </form>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/SignUp/SignUp">Üye olmak istiyorum</a>
-                        <a class="dropdown-item" href="#">Şifremi unuttum</a>
-                    </div>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Login/Login">Giriş yap</a>
                 </li>
             </ul>
         </div>

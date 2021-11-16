@@ -3,7 +3,6 @@ const button = document.querySelector(".switch");
 button.addEventListener("change", function () {
     if (status === false) {
         document.querySelector(".navbar").className = "navbar fixed-top navbar-expand-md navbar-dark bg-primary";
-        document.querySelector(".dropdown-menu").className = "dropdown-menu dropdown-menu-right";
         const element = document.querySelectorAll("a");
         element.forEach(function (el) {
             el.style.color = "white";
@@ -21,7 +20,6 @@ button.addEventListener("change", function () {
     }
     else if (status === true) {
         document.querySelector(".navbar").className = "navbar fixed-top navbar-expand-md navbar-dark bg-dark";
-        document.querySelector(".dropdown-menu").className = "dropdown-menu dropdown-menu-right bg-dark";
         const element = document.querySelectorAll("a, span, label");
         element.forEach(function (el) {
             el.style.color = "#ff6600";
