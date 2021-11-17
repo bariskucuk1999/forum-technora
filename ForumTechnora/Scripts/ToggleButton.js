@@ -7,7 +7,7 @@ button.addEventListener("change", function () {
         element.forEach(function (el) {
             el.style.color = "white";
         })
-        const element2 = document.querySelectorAll("label, span, .dropdown-item");
+        const element2 = document.querySelectorAll("label, span");
         element2.forEach(function (el) {
             el.style.color = "black";
         })
@@ -24,7 +24,7 @@ button.addEventListener("change", function () {
         element.forEach(function (el) {
             el.style.color = "#ff6600";
         })
-        const element2 = document.querySelectorAll(".form-control label"); //SignUp form ekranı elemanlarına erişim
+        const element2 = document.querySelectorAll(".form-control label, #login-form label, .dropdown-item"); //SignUp-Login form ekranı elemanlarına erişim
         element2.forEach(function (el) {
             el.style.color = "black";
         })

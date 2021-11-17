@@ -12,52 +12,64 @@
 <head>
     <meta name="description" content="Teknoloji konularını barındıran paylaşım ve haber forumu">
     <meta name="keywords" content="teknoloji, forum, yazılım, post, haber, soru, cevap">
-    <!--tablet, pc, telefon için ekran çözünürlüğünü ve yakınlaştırmasını oto değiştirme-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Üye Ol</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         label {
             color: black;
             font-weight: 600;
         }
+        .invalid-feedback {
+            font-weight: 600;
+        }
     </style>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
-        <form class="form-control col-md-4 mx-auto bg-success" method="post">
+        <form class="form-control col-md-4 mx-auto bg-success needs-validation" method="post" novalidate>
             <h4 style="text-align:center; color:black;">Üye Ol</h4>
             <div class="form-group">
                 <label for="username">Ad:</label>
-                <input type="text" class="form-control" id="username" name="UserName" placeholder="Adınız">
+                <input type="text" class="form-control" id="username" name="UserName" placeholder="Adınız" required>
+                <div class="invalid-feedback">Ad alanı boş bırakılamaz.</div>
             </div>
             <div class="form-group">
                 <label for="userlastname">Soyad:</label>
-                <input type="text" class="form-control" id="userlastname" name="UserLastName" placeholder="Soyadınız">
+                <input type="text" class="form-control" id="userlastname" name="UserLastName" placeholder="Soyadınız" required>
+                <div class="invalid-feedback">Soyad alanı boş bırakılamaz.</div>
             </div>
             <div class="form-group">
                 <label for="nickname">Nickname:</label>
-                <input type="text" class="form-control" id="nickname" name="NickName" placeholder="Nickname">
+                <input type="text" class="form-control" id="nickname" name="NickName" placeholder="Nickname" required>
+                <div class="invalid-feedback">NickName alanı boş bırakılamaz.</div>
             </div>
             <div class="form-group">
                 <label for="email">E-posta:</label>
-                <input type="email" class="form-control" id="email" name="Email" placeholder="E-posta adresi">
+                <input type="email" class="form-control" id="email" name="Email" placeholder="E-posta adresi" required>
+                <div class="invalid-feedback">E-posta alanı boş bırakılamaz.</div>
             </div>
             <div class="form-group">
                 <label for="password">Şifre:</label>
-                <input type="password" class="form-control" id="password" name="Password" placeholder="Yeni şifre">
-                <label style="font-size:smaller;">*Şifrenizde en az bir harf ve rakam bulunmalıdır.</label>
+                <input type="password" class="form-control" id="password" name="Password" placeholder="Yeni şifre" required>
+                <div class="invalid-feedback">Şifreniz minimum 8 karakterden oluşmalı ve en az bir harf ve rakam içermelidir.</div>
             </div>
             <div class="form-group">
                 <label for="userbirthday">Doğum tarihi:</label>
-                <input type="date" class="form-control" id="userbirthday" name="UserBirthday">
+                <input type="date" class="form-control" id="userbirthday" name="UserBirthday" required>
+                <div class="invalid-feedback">Doğum tarihi alanı boş bırakılamaz.</div>
             </div>
             <div class="form-group">
-                <input hidden type="datetime-local" class="form-control" name="CreationDate" value="YYYY-MM-DDThh:mm">
+                <input hidden type="text" id="c-date" name="CreationDate">
             </div>
             <button class="btn btn-warning">Üye ol</button>
+            <script>
+                let CreationDate = new Date().toLocaleString();
+                document.getElementById("c-date").value = CreationDate;
+            </script>
         </form>
     </div>
+    <script src="~/Scripts/Validation.js"></script>
 </body>
 </html>
 

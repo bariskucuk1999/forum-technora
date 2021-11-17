@@ -1,5 +1,4 @@
-﻿using BusinessLayer.Concrete;
-using DataAccessLayer.Concrete;
+﻿using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -27,7 +26,11 @@ namespace ForumTechnora.Controllers
             {
                 //yönlendirme işlemi
                 FormsAuthentication.SetAuthCookie(userinfo.Email, false);
-                Session["UserName"] = userinfo.NickName; //UserProfile HTML sayfasında kullandık
+                Session["UserName"] = userinfo.UserName; //UserProfile HTML sayfasında kullandık
+                Session["UserLastName"] = userinfo.UserLastName;
+                Session["NickName"] = userinfo.NickName; 
+                Session["UserBirthday"] = userinfo.UserBirthday;
+                Session["CreationDate"] = userinfo.CreationDate;
                 return RedirectToAction("UserProfile","UserProfile");
             }
             else

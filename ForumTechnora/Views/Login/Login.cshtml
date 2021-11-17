@@ -14,6 +14,7 @@
     <meta name="keywords" content="teknoloji, forum, yazılım, post, haber, soru, cevap">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giriş Yap</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         label {
             color: black;
@@ -30,7 +31,6 @@
             border-width: 1px;
         }
     </style>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
@@ -41,16 +41,12 @@
                 <div class="form-group">
                     <label for="email">E-posta:</label>
                     <input type="email" class="form-control" id="email" name="Email" placeholder="E-posta adresiniz">
+                    <div class="invalid-feedback">E-posta alanı boş bırakılamaz.</div>
                 </div>
                 <div class="form-group">
                     <label for="password">Şifre:</label>
                     <input type="password" class="form-control" id="password" name="Password" placeholder="Şifreniz">
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input">
-                    <label class="form-check-label">
-                        Şifreyi göster
-                    </label>
+                    <div class="invalid-feedback">Şifre alanı boş bırakılamaz.</div>
                 </div>
                 <br />
                 <button type="submit" class="btn btn-warning">Giriş yap</button>
@@ -60,6 +56,7 @@
             <a class="dropdown-item" href="#">Şifremi unuttum</a>
         </div>
     </div>
+    <script src="~/Scripts/Validation.js"></script>
 </body>
 </html>
 
