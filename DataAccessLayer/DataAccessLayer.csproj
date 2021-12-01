@@ -54,14 +54,13 @@
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\GenericRepository.cs" />
-    <Compile Include="Migrations\202111022322586_app01.cs" />
-    <Compile Include="Migrations\202111022322586_app01.designer.cs">
-      <DependentUpon>202111022322586_app01.cs</DependentUpon>
+    <Compile Include="Migrations\202112011829592_app1.cs" />
+    <Compile Include="Migrations\202112011829592_app1.designer.cs">
+      <DependentUpon>202112011829592_app1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj">
       <Project>{6A16FA59-D3CE-4194-A45B-42E533E10FA3}</Project>
@@ -73,8 +72,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202111022322586_app01.resx">
-      <DependentUpon>202111022322586_app01.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202112011829592_app1.resx">
+      <DependentUpon>202112011829592_app1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

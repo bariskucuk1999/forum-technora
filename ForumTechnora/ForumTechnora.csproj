@@ -179,6 +179,7 @@
     <Content Include="Views\Home\News.cshtml" />
     <Content Include="Views\UserProfile\UserProfile.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\LogOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

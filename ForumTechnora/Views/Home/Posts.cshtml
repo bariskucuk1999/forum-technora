@@ -34,70 +34,84 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    <article>
-        <div class="container">
-            <form class="form-control col-md-8 mx-auto" method="post">
-                <div class="form-group">
-                    <label for="post"><strong>Yeni konu oluştur:</strong></label>
-                    <input type="text" class="form-control" id="post" name="PostTitle" placeholder="Konu başlığını giriniz">
-                </div>
-                <div class="form-group">
-                    <textarea rows="3" cols="10" type="text" class="form-control" id="post-text" name="PostText" placeholder="Paylaşımınız..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="category">Bir kategori seçiniz:</label>
-                    <select name="CategoryID" id="category">
-                        <option value="1">Donanım</option>
-                        <option value="2">Mobil</option>
-                        <option value="3">Web</option>
-                        <option value="4">Yazılım</option>
-                    </select>
-                    <select name="UserID" id="user">
-                        <option value="22">User test</option>
-                    </select>
-                </div>
-                <button class="btn btn-success">Paylaş</button>
-            </form>
-            <br />
-            <h3 style="text-align:center;">Paylaşımlar</h3>
-            @foreach (var item in Model)
+    <div class="container">
+        <form class="form-control col-md-8 mx-auto" method="post">
+            <div class="form-group">
+                <label for="post"><strong>Yeni konu oluştur:</strong></label>
+                <input type="text" class="form-control" id="post" name="PostTitle" placeholder="Konu başlığını giriniz">
+            </div>
+            <div class="form-group">
+                <textarea rows="3" cols="10" type="text" class="form-control" id="post-text" name="PostText" placeholder="Paylaşımınız..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category">Bir kategori seçiniz:</label>
+                <select name="CategoryID" id="category">
+                    <option value="1">Donanım</option>
+                    <option value="2">Mobil</option>
+                    <option value="3">Web</option>
+                    <option value="4">Yazılım</option>
+                </select>
+                <select hidden name="UserID">
+                    <option value="@Session["UserID"]">@Session["UserName"]</option>
+                </select>
+                <select hidden name="NickName">
+                    <option value="@Session["NickName"]">@Session["UserName"]</option>
+                </select>
+                <input hidden type="text" id="pc-date" name="PostCreationDate">
+            </div>
+            @if (Convert.ToInt32(Session["UserID"]) == 0)
             {
-                <div class="card w-75 mx-auto">
-                    <div class="card-body">
-                        <p class="card-text">@item.PostTitle</p>
-                        <hr />
-                        <p class="card-text">@item.PostText</p>
-                        <h6 class="card-title" style="color: red; font-size: small; text-align: right;">Konu sahibi: @item.UserID</h6>
-                        <h6 class="card-text" style="font-size:small; text-align:right;">Post oluşturulma tarihi:@item.PostCreationDate</h6>
-                        <h6 class="card-text text-primary" style="font-size: small; text-align: right;">
-                            Kategori:
-                            @if (item.CategoryID == 1)
-                            {<span>Donanım</span>}
-                            else if (item.CategoryID == 2)
-                            {<span>Mobil</span>}
-                            else if (item.CategoryID == 3)
-                            {<span>Web</span>}
-                            else if (item.CategoryID == 4)
-                            {<span>Yazılım</span>}
-                            else
-                            {<span>Error</span>}
-                        </h6>
-                    </div>
-                </div>
+                <label style="color: red;">Paylaşım yapabilmek için lütfen giriş yapınız...</label>
             }
-        </div>
-    </article>
-    <aside>
-        <div class="container-fluid mx-auto my-auto">
-            <ul style="list-style-type: none; width:300px; margin-top:-564px; margin-left:128px;">
-                <li style="height:25px;"><strong>Kategori filtreleme:</strong></li>
-                <li><a href="#">Donanım</a></li>
-                <li><a href="#">Mobil</a></li>
-                <li><a href="#">Web</a></li>
-                <li><a href="#">Yazılım</a></li>
-            </ul>
-        </div>
-    </aside>
+            else
+            {
+                <button class="btn btn-success">Paylaş</button>
+            }
+        </form>
+        <br />
+        <h3 style="text-align:center;">Paylaşımlar</h3>
+        @foreach (var item in Model)
+        {
+            <div class="card w-75 mx-auto">
+                <div class="card-body">
+                    <p class="card-text">@item.PostTitle</p>
+                    <hr />
+                    <p class="card-text">@item.PostText</p>
+                    <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Konu sahibi: @item.NickName</h6>
+                    <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Kullanıcı ID'si: @item.UserID</h6>
+                    <h6 class="card-text" style="font-size:small; text-align:right;">Post oluşturulma tarihi: @item.PostCreationDate</h6>
+                    <h6 class="card-text text-primary" style="font-size: small; text-align: right;">
+                        Kategori:
+                        @if (item.CategoryID == 1)
+                        {<span>Donanım</span>}
+                        else if (item.CategoryID == 2)
+                        {<span>Mobil</span>}
+                        else if (item.CategoryID == 3)
+                        {<span>Web</span>}
+                        else if (item.CategoryID == 4)
+                        {<span>Yazılım</span>}
+                        else
+                        {<span>Error</span>}
+                    </h6>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="container-fluid mx-auto my-auto">
+        <ul style="list-style-type: none; width:300px; margin-top:-564px; margin-left:128px;">
+            <li style="height:25px;"><strong>Kategori filtreleme:</strong></li>
+            <li><a href="#">Tümünü görüntüle</a></li>
+            <li><a href="#">Donanım</a></li>
+            <li><a href="#">Mobil</a></li>
+            <li><a href="#">Web</a></li>
+            <li><a href="#">Yazılım</a></li>
+        </ul>
+    </div>
+    <script>
+        let PostCreationDate = new Date().toLocaleString();
+        document.getElementById("pc-date").value = PostCreationDate;
+        console.log(@Session["UserID"]);
+    </script>
 </body>
 </html>
 

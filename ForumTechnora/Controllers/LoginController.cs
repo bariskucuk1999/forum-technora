@@ -26,7 +26,8 @@ namespace ForumTechnora.Controllers
             {
                 //yönlendirme işlemi
                 FormsAuthentication.SetAuthCookie(userinfo.Email, false);
-                Session["UserName"] = userinfo.UserName; //UserProfile HTML sayfasında kullandık
+                Session["UserID"] = userinfo.UserID;
+                Session["UserName"] = userinfo.UserName;
                 Session["UserLastName"] = userinfo.UserLastName;
                 Session["NickName"] = userinfo.NickName; 
                 Session["UserBirthday"] = userinfo.UserBirthday;
@@ -38,6 +39,12 @@ namespace ForumTechnora.Controllers
                 //hatalı giriş
                 return RedirectToAction("Login");
             }
+        }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Login");
         }
     }
 }

@@ -26,7 +26,7 @@ namespace ForumTechnora.Controllers
         public ActionResult Posts(Post p)
         {
             um.CreatePost(p);
-            return Redirect("/Home/Index");
+            return Redirect("/Home/Posts");
         }
         
         public ActionResult News()

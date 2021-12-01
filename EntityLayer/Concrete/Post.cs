@@ -16,7 +16,9 @@ namespace EntityLayer.Concrete
         [StringLength(5000)]
         public string PostText { get; set; }
         public string PostCreationDate { get; set; }
-        public int UserID { get; set; }
+        public int? UserID { get; set; }
+        [StringLength(16)]
+        public string NickName { get; set; }
         public virtual User User { get; set; }
         public int CategoryID { get; set; }
         public virtual Category Category { get; set; }
