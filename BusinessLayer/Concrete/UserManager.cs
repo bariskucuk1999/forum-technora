@@ -23,7 +23,7 @@ namespace BusinessLayer.Concrete
             }
             else
             {
-                p.Password = EncodePasswordToBase64(p.Password);
+                //p.Password = EncodePasswordToBase64(p.Password);
                 user.Insert(p);
             }
         }
@@ -31,11 +31,11 @@ namespace BusinessLayer.Concrete
         {
             post.Insert(p);
         }
-        public static string EncodePasswordToBase64(string password)
-        {
-            byte[] bytes = Encoding.Unicode.GetBytes(password);
-            byte[] inArray = HashAlgorithm.Create("SHA1").ComputeHash(bytes);
-            return Convert.ToBase64String(inArray);
-        }
+        //public static string EncodePasswordToBase64(string password)
+        //{
+        //    byte[] bytes = Encoding.Unicode.GetBytes(password);
+        //    byte[] inArray = HashAlgorithm.Create("SHA1").ComputeHash(bytes);
+        //    return Convert.ToBase64String(inArray);
+        //}
     }
 }

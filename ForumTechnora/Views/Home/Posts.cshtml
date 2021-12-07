@@ -30,10 +30,30 @@
                 text-decoration: none;
                 color: white;
             }
+
+        aside {
+            padding-left: 15px;
+            margin-left: 15px;
+            float: left;
+        }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
+    <aside>
+        <div class="d-flex justify-content-start d-sm-none d-md-none d-lg-none d-xl-block">
+            <div class="container-fluid">
+                <ul style="list-style-type: none; width:300px;">
+                    <li style="height:25px;"><strong>Kategori filtreleme:</strong></li>
+                    <li><a href="#">Tümünü görüntüle</a></li>
+                    <li><a href="#">Donanım</a></li>
+                    <li><a href="#">Mobil</a></li>
+                    <li><a href="#">Web</a></li>
+                    <li><a href="#">Yazılım</a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
     <div class="container">
         <form class="form-control col-md-8 mx-auto" method="post">
             <div class="form-group">
@@ -96,16 +116,6 @@
                 </div>
             </div>
         }
-    </div>
-    <div class="container-fluid mx-auto my-auto">
-        <ul style="list-style-type: none; width:300px; margin-top:-564px; margin-left:128px;">
-            <li style="height:25px;"><strong>Kategori filtreleme:</strong></li>
-            <li><a href="#">Tümünü görüntüle</a></li>
-            <li><a href="#">Donanım</a></li>
-            <li><a href="#">Mobil</a></li>
-            <li><a href="#">Web</a></li>
-            <li><a href="#">Yazılım</a></li>
-        </ul>
     </div>
     <script>
         let PostCreationDate = new Date().toLocaleString();
