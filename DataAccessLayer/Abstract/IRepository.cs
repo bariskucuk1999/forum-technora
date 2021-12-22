@@ -14,5 +14,6 @@ namespace DataAccessLayer.Abstract
         void Update(T p);
         void Delete(T p);
         List<T> List(Expression<Func<T, bool>> filter); //Şartlı listeleme(Posts.dbo'da Ali isimli User'ları yazdır gibi)
+        T Get(Expression<Func<T, bool>> filter); //ID'si 3 olan satırı seçme gibi
     }
 }

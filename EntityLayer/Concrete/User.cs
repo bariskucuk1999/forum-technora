@@ -16,7 +16,7 @@ namespace EntityLayer.Concrete
         [StringLength(20)]
         public string UserLastName { get; set; }
         public string Email { get; set; }
-        [StringLength(64)]
+        [StringLength(16)]
         public string Password { get; set; }
         [StringLength(16)]
         public string NickName { get; set; }

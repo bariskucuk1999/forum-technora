@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Concrete\Category.cs" />
     <Compile Include="Concrete\Comment.cs" />
+    <Compile Include="Concrete\News.cs" />
     <Compile Include="Concrete\Post.cs" />
     <Compile Include="Concrete\User.cs" />
     <Compile Include="Concrete\Vote.cs" />

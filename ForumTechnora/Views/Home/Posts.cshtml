@@ -92,8 +92,13 @@
         <h3 style="text-align:center;">Paylaşımlar</h3>
         @foreach (var item in Model)
         {
+
             <div class="card w-75 mx-auto">
                 <div class="card-body">
+                    @if (Convert.ToString(Session["UserName"]) == "Admin")
+                    {
+                        <a href="/Home/DeletePost/@item.PostID" class="btn btn-danger" style="float:right; font-size:small;">Paylaşımı Kaldır</a>
+                    }
                     <p class="card-text">@item.PostTitle</p>
                     <hr />
                     <p class="card-text">@item.PostText</p>
@@ -120,7 +125,6 @@
     <script>
         let PostCreationDate = new Date().toLocaleString();
         document.getElementById("pc-date").value = PostCreationDate;
-        console.log(@Session["UserID"]);
     </script>
 </body>
 </html>
