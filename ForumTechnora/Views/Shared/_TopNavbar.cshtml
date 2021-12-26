@@ -46,32 +46,35 @@
                 <br />
                 <span style="font-weight:bold; font-size:10px;">Gece modu</span>
             </label>
-            <form class="form-inline">
-                <input class="form-control" type="search" placeholder="Forum Technora'da ara...">
-                <button class="btn btn-info" type="submit">Ara</button>
-            </form>
+            
+                <form class="form-inline" action="/Home/Search">
+                    <input class="form-control" type="search" name="p" placeholder="Forum Technora'da ara...">
+                    <button class="btn btn-info" type="submit">Ara</button>
+                </form>
+            
+
             @if (Session["UserName"] == null)
             {
-             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/Login/Login">Giriş yap</a>
-                </li>
-            </ul> 
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Login/Login">Giriş yap</a>
+                    </li>
+                </ul>
             }
             else
-            { 
-        <div class="btn-group">
-            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                Kullanıcı
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li><a class="dropdown-item" href="/UserProfile/UserProfile">Profil</a></li>
-                <li><a class="dropdown-item" href="#">Ayarlar</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="/Login/LogOut">Çıkış yap</a></li>
-            </ul>
-        </div>
-            } 
+            {
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        Kullanıcı
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a class="dropdown-item" href="/UserProfile/UserProfile">Profil</a></li>
+                        <li><a class="dropdown-item" href="#">Ayarlar</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/Login/LogOut">Çıkış yap</a></li>
+                    </ul>
+                </div>
+            }
         </div>
     </nav>
     <br />

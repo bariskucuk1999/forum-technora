@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
+using BusinessLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace ForumTechnora.Controllers
 {
     public class LoginController : Controller
     {
+        UserManager um = new UserManager();
         // GET: Login
         [HttpGet]
         public ActionResult Login()
@@ -21,6 +23,7 @@ namespace ForumTechnora.Controllers
         public ActionResult Login(User p)
         {
             Context c = new Context();
+            p.Password = um.EncodePasswordToBase64(p.Password); //Veri tabanında sorgulamadan önce şifreleme
             var userinfo = c.Users.FirstOrDefault(x => x.Email == p.Email && x.Password == p.Password);
             if (userinfo != null)
             {

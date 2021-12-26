@@ -1,0 +1,89 @@
+﻿@using EntityLayer.Concrete
+@model dynamic
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_TopNavbar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="description" content="Teknoloji konularını barındıran paylaşım ve haber forumu">
+    <meta name="keywords" content="teknoloji, forum, yazılım, post, haber, soru, cevap">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arama Sonuçları</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h3 style="text-align:center;">Arama Sonuçları</h3>
+        <hr />
+        @foreach (Post item in Model.postFilter)
+        {
+            <div class="card w-75 mx-auto">
+                <div class="card-body">
+                    <p class="card-text">@item.PostTitle</p>
+                    <hr />
+                    <p class="card-text">@item.PostText</p>
+                    <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Konu sahibi: @item.NickName</h6>
+                    <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Kullanıcı ID'si: @item.UserID</h6>
+                    <h6 class="card-text" style="font-size:small; text-align:right;">Post oluşturulma tarihi: @item.PostCreationDate</h6>
+                    <h6 class="card-text text-primary" style="font-size: small; text-align: right;">
+                        Kategori:
+                        @if (item.CategoryID == 1)
+                        {<span>Donanım</span>}
+                        else if (item.CategoryID == 2)
+                        {<span>Mobil</span>}
+                        else if (item.CategoryID == 3)
+                        {<span>Web</span>}
+                        else if (item.CategoryID == 4)
+                        {<span>Yazılım</span>}
+                        else
+                        {<span>Error</span>}
+                    </h6>
+                </div>
+            </div>
+            <br />
+        }
+        @foreach (News item2 in Model.newsFilter)
+        {
+            <div class="row" data-aos="fade-up">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4 grid-margin">
+                                <div class="position-relative">
+                                    <div class="badge-positioned">
+                                        <span class="badge badge-danger font-weight-bold">HABER</span>
+                                    </div>
+                                    <div class="rotate-img">
+                                        <img src="~/Content/Banner.jpg"
+                                             alt="thumb"
+                                             class="img-fluid" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  grid-margin">
+                                <h3 class="mb-2">
+                                    @item2.NewsTitle
+                                </h3>
+                                <div class="mb-2">
+                                    <span class="mr-2" style="font-size:small;">Tarih: @item2.NewsCreationDate</span>
+                                </div>
+                                <hr />
+                                <p class="mb-0">
+                                    @item2.NewsText
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+        }
+    </div>
+
+</body>
+</html>

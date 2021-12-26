@@ -13,11 +13,11 @@ namespace EntityLayer.Concrete
         public int CommentID { get; set; }
         [StringLength(500)]
         public string CommentText { get; set; }
-        public DateTime CommentCreationDate { get; set; }
+        public string CommentCreationDate { get; set; }
         public int? UserID { get; set; }
         public virtual User User { get; set; }
 
-        public int PostID { get; set; }
+        public int? PostID { get; set; }
         public virtual Post Post { get; set; }
     }
 }

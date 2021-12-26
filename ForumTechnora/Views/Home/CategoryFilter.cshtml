@@ -1,8 +1,8 @@
 ﻿@using EntityLayer.Concrete
-@model dynamic
+@model List<Post>
 
 @{
-    ViewBag.Title = "Posts";
+    ViewBag.Title = "CategoryFilter";
     Layout = "~/Views/Shared/_TopNavbar.cshtml";
 }
 
@@ -90,7 +90,7 @@
         </form>
         <br />
         <h3 style="text-align:center;">Paylaşımlar</h3>
-        @foreach (Post item in Model.postItems)
+        @foreach (Post item in Model)
         {
             <div class="card w-75 mx-auto">
                 <div class="card-body">
@@ -120,46 +120,46 @@
                 </div>
             </div>
             @*<select hidden name="UserID">
-                <option value="@Session["UserID"]">@Session["UserName"]</option>
-            </select>
-            <select hidden name="NickName">
-                <option value="@Session["NickName"]">@Session["UserName"]</option>
-            </select>
-            <input hidden type="text" id="cc-date" name="CommentCreationDate">
-            <form class="form-group">
-                <div class="row">
-                    <div class="col-9">
-                        <div class="card w-60" style="margin-left:300px;">
-                            <input type="text" class="form-control" id="comment" name="CommentText" placeholder="Yorum yaz...">
+                    <option value="@Session["UserID"]">@Session["UserName"]</option>
+                </select>
+                <select hidden name="NickName">
+                    <option value="@Session["NickName"]">@Session["UserName"]</option>
+                </select>
+                <input hidden type="text" id="cc-date" name="CommentCreationDate">
+                <form class="form-group">
+                    <div class="row">
+                        <div class="col-9">
+                            <div class="card w-60" style="margin-left:300px;">
+                                <input type="text" class="form-control" id="comment" name="CommentText" placeholder="Yorum yaz...">
+                            </div>
                         </div>
-                    </div>
-                    @if (Convert.ToInt32(Session["UserID"]) == 0)
-                    {
-
-                    }
-                    else
-                    {
-                        <div class="col-3" style="float:left;">
-                            <button class="btn btn-success">Yorum Yap</button>
-                        </div>
-                    }
-                </div>
-            </form>
-            foreach (Comment item2 in Model.commentItems)
-            {
-                <div class="card w-50 mx-auto">
-                    <div class="card-body">
-                        @if (Convert.ToString(Session["UserName"]) == "Admin")
+                        @if (Convert.ToInt32(Session["UserID"]) == 0)
                         {
-                            <a href="/Home/DeleteComment/@item2.CommentID" class="btn btn-danger" style="float:right; font-size:small;">Yorumu Kaldır</a>
+
                         }
-                        <p class="card-text">@item2.CommentText</p>
-                        <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Konu sahibi: @item.NickName</h6>
-                        <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Kullanıcı ID'si: @item.UserID</h6>
-                        <h6 class="card-text" style="font-size:small; text-align:right;">Yorum oluşturulma tarihi: @item2.CommentCreationDate</h6>
+                        else
+                        {
+                            <div class="col-3" style="float:left;">
+                                <button class="btn btn-success">Yorum Yap</button>
+                            </div>
+                        }
                     </div>
-                </div>
-            }*@
+                </form>
+                foreach (Comment item2 in Model.commentItems)
+                {
+                    <div class="card w-50 mx-auto">
+                        <div class="card-body">
+                            @if (Convert.ToString(Session["UserName"]) == "Admin")
+                            {
+                                <a href="/Home/DeleteComment/@item2.CommentID" class="btn btn-danger" style="float:right; font-size:small;">Yorumu Kaldır</a>
+                            }
+                            <p class="card-text">@item2.CommentText</p>
+                            <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Konu sahibi: @item.NickName</h6>
+                            <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Kullanıcı ID'si: @item.UserID</h6>
+                            <h6 class="card-text" style="font-size:small; text-align:right;">Yorum oluşturulma tarihi: @item2.CommentCreationDate</h6>
+                        </div>
+                    </div>
+                }*@
         }
     </div>
     <script>
@@ -170,4 +170,3 @@
     </script>
 </body>
 </html>
-

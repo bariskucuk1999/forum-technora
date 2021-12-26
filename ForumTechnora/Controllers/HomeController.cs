@@ -3,6 +3,7 @@ using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -59,19 +60,28 @@ namespace ForumTechnora.Controllers
         [HttpGet]
         public ActionResult Posts()
         {
-            var postItems = um.GetPost();
-            return View(postItems);
+            dynamic myModel = new ExpandoObject(); //Birden fazla modelin tek cshtml dosyasında kullanımı
+            myModel.postItems = um.GetPost();
+            myModel.commentItems = um.GetComment();
+            return View(myModel);
         }
         [HttpPost]
-        public ActionResult Posts(Post p)
+        public ActionResult Posts(Post p, Comment c)
         {
             um.CreatePost(p);
+            um.CreateComment(c);
             return Redirect("/Home/Posts");
         }
         public ActionResult DeletePost(int id)
         {
             var PostIdValue = um.GetPostID(id);
             um.DeletePost(PostIdValue);
+            return Redirect("/Home/Posts");
+        }
+        public ActionResult DeleteComment(int id)
+        {
+            var CommentIdValue = um.GetCommentID(id);
+            um.DeleteComment(CommentIdValue);
             return Redirect("/Home/Posts");
         }
         [HttpGet]
@@ -91,6 +101,19 @@ namespace ForumTechnora.Controllers
             var NewsIdValue = um.GetNewsID(id);
             um.DeleteNews(NewsIdValue);
             return Redirect("/Home/News");
+        }
+        public ActionResult Search()
+        {
+            dynamic myModel1 = new ExpandoObject();
+            string param = Request.QueryString["p"];
+            myModel1.postFilter = um.PostFilter(param);
+            myModel1.newsFilter = um.NewsFilter(param);
+            return View(myModel1);
+        }
+        public ActionResult CategoryFilter()
+        {
+            int category = Convert.ToInt32(Request.QueryString["filter"]);
+            return View(um.CategoryFilter(category));
         }
     }
 }
