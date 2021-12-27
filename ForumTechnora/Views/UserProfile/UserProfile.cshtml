@@ -56,13 +56,13 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="count-data text-center">
-                            <h3 class="count h2" data-to="150" data-speed="150">0</h3>
+                            <h3 class="count h2" data-to="150" data-speed="150">@Session["PostCount"]</h3>
                             <p class="m-0px font-w-600">Post Sayısı</p>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="count-data text-center">
-                            <h3 class="count h2" data-to="850" data-speed="850">0</h3>
+                            <h3 class="count h2" data-to="850" data-speed="850">@Session["DayMember"]</h3>
                             <p class="m-0px font-w-600">Kaç Gündür Foruma Üye</p>
                         </div>
                     </div>
@@ -70,10 +70,5 @@
             </div>
         </div>
     </section>
-    <script>
-        @*var creationDate1 = @Session["CreationDate"];
-        var diff = Math.abs(new Date().toDateString() - creationDate1.toDateString());
-        console.log(diff);*@
-    </script>
 </body>
 </html>

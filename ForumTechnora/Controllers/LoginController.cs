@@ -35,7 +35,14 @@ namespace ForumTechnora.Controllers
                 Session["NickName"] = userinfo.NickName; 
                 Session["UserBirthday"] = userinfo.UserBirthday;
                 Session["CreationDate"] = userinfo.CreationDate;
-                return RedirectToAction("UserProfile","UserProfile");
+
+                DateTime now = DateTime.Now;
+                var cdate=DateTime.Parse(userinfo.CreationDate);
+                TimeSpan diff = now.Date - cdate.Date;
+                int days = (int)diff.TotalDays;
+                Session["DayMember"] = days;
+
+                return RedirectToAction("Posts","Home");
             }
             else
             {
