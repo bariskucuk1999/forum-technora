@@ -16,65 +16,65 @@ namespace ForumTechnora.Controllers
 
         public ActionResult Index()
         {
-            //HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
-            //HtmlAgilityPack.HtmlDocument doc = web.Load("https://www.bloomberght.com/piyasalar");
-            //string Bist100Scrapper()
-            //{
-            //    string bist100 = "";
-            //    foreach (var item in doc.DocumentNode.SelectNodes("//span[@data-secid='XU100 Index']"))
-            //    {
-            //        bist100 = bist100 + item.InnerText;
-            //    }
-            //    return bist100;
-            //}
-            //string UsdTryScrapper()
-            //{
-            //    string usdtry = "";
-            //    foreach (var item in doc.DocumentNode.SelectNodes("//span[@data-secid='USDTRY Curncy']"))
-            //    {
-            //        usdtry = usdtry + item.InnerText;
-            //    }
-            //    return usdtry;
-            //}
-            //string EurTryScrapper()
-            //{
-            //    string eurtry = "";
-            //    foreach (var item in doc.DocumentNode.SelectNodes("//span[@data-secid='EURTRY Curncy']"))
-            //    {
-            //        eurtry = eurtry + item.InnerText;
-            //    }
-            //    return eurtry;
-            //}
-            //string WeatherScrapper()
-            //{
-            //    HtmlAgilityPack.HtmlDocument doc1 = web.Load("https://weather.com/tr-TR/weather/today/l/33d1e415eb66f3e1ab35c3add45fccf4512715d329edbd91c806a6957e123b49");
-            //    string weather = doc1.DocumentNode.SelectNodes("//div[@class='CurrentConditions--primary--2SVPh']").FirstOrDefault().InnerText;
-            //    return weather;
-            //}
-            //string TodayInHistoryScrapper()
-            //{
-            //    HtmlAgilityPack.HtmlDocument doc1 = web.Load("https://tr.wikipedia.org/wiki/Anasayfa");
-            //    int count = 0;
-            //    string temp = "";
-            //    string info = "";
-            //    foreach (var item in doc1.DocumentNode.SelectNodes("//td[@id='mp-itn']/ul"))
-            //    {
-            //        if (count == 0)
-            //        {
-            //            temp = temp + item.InnerText;
-            //            count++;
-            //            continue;
-            //        }
-            //        info = info + item.InnerText;
+            HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
+            HtmlAgilityPack.HtmlDocument doc = web.Load("https://www.bloomberght.com/piyasalar");
+            string Bist100Scrapper()
+            {
+                string bist100 = "";
+                foreach (var item in doc.DocumentNode.SelectNodes("//span[@data-secid='XU100 Index']"))
+                {
+                    bist100 = bist100 + item.InnerText;
+                }
+                return bist100;
+            }
+            string UsdTryScrapper()
+            {
+                string usdtry = "";
+                foreach (var item in doc.DocumentNode.SelectNodes("//span[@data-secid='USDTRY Curncy']"))
+                {
+                    usdtry = usdtry + item.InnerText;
+                }
+                return usdtry;
+            }
+            string EurTryScrapper()
+            {
+                string eurtry = "";
+                foreach (var item in doc.DocumentNode.SelectNodes("//span[@data-secid='EURTRY Curncy']"))
+                {
+                    eurtry = eurtry + item.InnerText;
+                }
+                return eurtry;
+            }
+            string WeatherScrapper()
+            {
+                HtmlAgilityPack.HtmlDocument doc1 = web.Load("https://weather.com/tr-TR/weather/today/l/33d1e415eb66f3e1ab35c3add45fccf4512715d329edbd91c806a6957e123b49");
+                string weather = doc1.DocumentNode.SelectNodes("//div[@class='CurrentConditions--primary--2SVPh']").FirstOrDefault().InnerText;
+                return weather;
+            }
+            string TodayInHistoryScrapper()
+            {
+                HtmlAgilityPack.HtmlDocument doc1 = web.Load("https://tr.wikipedia.org/wiki/Anasayfa");
+                int count = 0;
+                string temp = "";
+                string info = "";
+                foreach (var item in doc1.DocumentNode.SelectNodes("//td[@id='mp-itn']/ul"))
+                {
+                    if (count == 0)
+                    {
+                        temp = temp + item.InnerText;
+                        count++;
+                        continue;
+                    }
+                    info = info + item.InnerText;
 
-            //    }
-            //    return info;
-            //}
-            //Session["Bist100"] = Bist100Scrapper();
-            //Session["UsdTry"] = UsdTryScrapper();
-            //Session["EurTry"] = EurTryScrapper();
-            //Session["Weather"] = WeatherScrapper();
-            //Session["TodayInHistory"] = TodayInHistoryScrapper();
+                }
+                return info;
+            }
+            Session["Bist100"] = Bist100Scrapper();
+            Session["UsdTry"] = UsdTryScrapper();
+            Session["EurTry"] = EurTryScrapper();
+            Session["Weather"] = WeatherScrapper();
+            Session["TodayInHistory"] = TodayInHistoryScrapper();
             return View();
         }
         [HttpGet]
