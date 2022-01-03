@@ -37,6 +37,10 @@
             margin-left: 15px;
             float: left;
         }
+        .dark {
+            background-color: #6c757d !important;
+            color: white;
+        }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -111,7 +115,7 @@
                         <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Konu sahibi: @item.NickName</h6>
                         <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Kullanıcı ID'si: @item.UserID</h6>
                         <h6 class="card-text" style="font-size:small; text-align:right;">Post oluşturulma tarihi: @item.PostCreationDate</h6>
-                        <h6 class="card-text text-primary" style="font-size: small; text-align: right;">
+                        <h6 class="card-text" style="font-size: small; text-align: right;">
                             Kategori:
                             @if (item.CategoryID == 1)
                             {<span>Donanım</span>}
@@ -167,7 +171,7 @@
                 else
                 {
                     <div class="col-sm-2 grid-margin">
-                        <form class="form-control" method="post" style="border:none; background-color:transparent;">
+                        <form class="form-control" method="post" style="border:none; width:0px; padding:0px 0px 0px 0px; margin-top:22px;">
                             <div class="form-group">
                                 <select hidden name="UserID">
                                     <option value="@Session["UserID"]">@Session["UserName"]</option>

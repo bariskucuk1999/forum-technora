@@ -14,6 +14,12 @@
     <meta name="keywords" content="teknoloji, forum, yazılım, post, haber, soru, cevap">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arama Sonuçları</title>
+    <style>
+        .dark {
+            background-color: #6c757d !important;
+            color: white;
+        }
+    </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
@@ -36,7 +42,7 @@
                         <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Konu sahibi: @item.NickName</h6>
                         <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Kullanıcı ID'si: @item.UserID</h6>
                         <h6 class="card-text" style="font-size:small; text-align:right;">Post oluşturulma tarihi: @item.PostCreationDate</h6>
-                        <h6 class="card-text text-primary" style="font-size: small; text-align: right;">
+                        <h6 class="card-text" style="font-size: small; text-align: right;">
                             Kategori:
                             @if (item.CategoryID == 1)
                             {<span>Donanım</span>}
