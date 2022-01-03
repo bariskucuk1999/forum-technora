@@ -1,9 +1,10 @@
 ﻿@using EntityLayer.Concrete
-@model List<Post>
+@model dynamic
 
 @{
     ViewBag.Title = "CategoryFilter";
     Layout = "~/Views/Shared/_TopNavbar.cshtml";
+    int postCount = 0;
 }
 
 <!DOCTYPE html>
@@ -90,62 +91,107 @@
         </form>
         <br />
         <h3 style="text-align:center;">Paylaşımlar</h3>
-        @foreach (Post item in Model)
+        @foreach (Post item in Model.postItems1)
         {
-            <div class="card w-75 mx-auto">
-                <div class="card-body">
-                    @if (Convert.ToString(Session["UserName"]) == "Admin")
-                    {
-                        <a href="/Home/DeletePost/@item.PostID" class="btn btn-danger" style="float:right; font-size:small;">Paylaşımı Kaldır</a>
-                    }
-                    <p class="card-text">@item.PostTitle</p>
-                    <hr />
-                    <p class="card-text">@item.PostText</p>
-                    <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Konu sahibi: @item.NickName</h6>
-                    <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Kullanıcı ID'si: @item.UserID</h6>
-                    <h6 class="card-text" style="font-size:small; text-align:right;">Post oluşturulma tarihi: @item.PostCreationDate</h6>
-                    <h6 class="card-text text-primary" style="font-size: small; text-align: right;">
-                        Kategori:
-                        @if (item.CategoryID == 1)
-                        {<span>Donanım</span>}
-                        else if (item.CategoryID == 2)
-                        {<span>Mobil</span>}
-                        else if (item.CategoryID == 3)
-                        {<span>Web</span>}
-                        else if (item.CategoryID == 4)
-                        {<span>Yazılım</span>}
-                        else
-                        {<span>Error</span>}
-                    </h6>
-                </div>
-            </div>
-            @*<select hidden name="UserID">
-                    <option value="@Session["UserID"]">@Session["UserName"]</option>
-                </select>
-                <select hidden name="NickName">
-                    <option value="@Session["NickName"]">@Session["UserName"]</option>
-                </select>
-                <input hidden type="text" id="cc-date" name="CommentCreationDate">
-                <form class="form-group">
-                    <div class="row">
-                        <div class="col-9">
-                            <div class="card w-60" style="margin-left:300px;">
-                                <input type="text" class="form-control" id="comment" name="CommentText" placeholder="Yorum yaz...">
-                            </div>
-                        </div>
-                        @if (Convert.ToInt32(Session["UserID"]) == 0)
+            if (item.PostTitle == null || item.PostText == null)
+            {
+                <!--PostTitle veya PostText boş ise herhangi bir veri görüntülemesi yok-->
+            }
+            else
+            {
+                <div class="card w-75 mx-auto">
+                    <div class="card-body">
+                        @if (Convert.ToString(Session["UserName"]) == "Admin")
                         {
-
+                            <a href="/Home/DeletePost/@item.PostID" class="btn btn-danger" style="float:right; font-size:small;">Paylaşımı Kaldır</a>
                         }
-                        else
+                        <p class="card-text">@item.PostTitle</p>
+                        <hr />
+                        <p class="card-text">@item.PostText</p>
+                        <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Konu sahibi: @item.NickName</h6>
+                        <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Kullanıcı ID'si: @item.UserID</h6>
+                        <h6 class="card-text" style="font-size:small; text-align:right;">Post oluşturulma tarihi: @item.PostCreationDate</h6>
+                        <h6 class="card-text text-primary" style="font-size: small; text-align: right;">
+                            Kategori:
+                            @if (item.CategoryID == 1)
+                            {<span>Donanım</span>}
+                            else if (item.CategoryID == 2)
+                            {<span>Mobil</span>}
+                            else if (item.CategoryID == 3)
+                            {<span>Web</span>}
+                            else if (item.CategoryID == 4)
+                            {<span>Yazılım</span>}
+                            else
+                            {<span>Error</span>}
+                        </h6>
+                        @if (item.UserID == Convert.ToInt32(Session["UserID"]))
                         {
-                            <div class="col-3" style="float:left;">
-                                <button class="btn btn-success">Yorum Yap</button>
-                            </div>
+                            postCount = postCount + 1;
+                            Session["PostCount"] = postCount;
                         }
                     </div>
-                </form>
-                foreach (Comment item2 in Model.commentItems)
+                </div>
+            }
+
+            <!--vote işlemi-->
+            <div class="row">
+                <div class="col-sm-1 grid-margin" style="padding-top:22px; margin-right:30px;">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Beğenenler
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            @foreach (Vote item3 in Model.voteItems1)
+                            {
+                                if (item.PostID == item3.PostID)
+                                {
+                                    <h6 class="dropdown-item" style="font-size:small; text-align:left;">@item3.NickName bunu beğendi.</h6>
+                                    if (Convert.ToString(Session["UserName"]) == "Admin")
+                                    {
+                                        <a href="/Home/DeleteVote/@item3.VoteID" class="btn btn-danger" style="font-size: small; margin-left:38px;">Beğeniyi kaldır</a>
+                                    }
+                                }
+                                else
+                                {
+                                    <!--herhangi bir veri görüntülemesi yok-->
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                @if (Convert.ToInt32(Session["UserID"]) == 0)
+                {
+                    <!--buton kapalı-->
+                }
+                else
+                {
+                    <div class="col-sm-2 grid-margin">
+                        <form class="form-control" method="post" style="border: none; background-color: transparent;">
+                            <div class="form-group">
+                                <select hidden name="UserID">
+                                    <option value="@Session["UserID"]">@Session["UserName"]</option>
+                                </select>
+                                <select hidden name="NickName">
+                                    <option value="@Session["NickName"]">@Session["UserName"]</option>
+                                </select>
+                                <select hidden name="PostID">
+                                    <option value="@item.PostID">@Session["UserName"]</option>
+                                </select>
+                                <select hidden name="VoteCount">
+                                    <option value="1">1</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-warning">Beğen</button>
+                        </form>
+                    </div>
+                }
+            </div>
+
+
+            foreach (Comment item2 in Model.commentItems1)
+            {
+                if (item.PostID == item2.PostID)
                 {
                     <div class="card w-50 mx-auto">
                         <div class="card-body">
@@ -154,19 +200,69 @@
                                 <a href="/Home/DeleteComment/@item2.CommentID" class="btn btn-danger" style="float:right; font-size:small;">Yorumu Kaldır</a>
                             }
                             <p class="card-text">@item2.CommentText</p>
-                            <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Konu sahibi: @item.NickName</h6>
-                            <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Kullanıcı ID'si: @item.UserID</h6>
+                            <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Konu sahibi: @item2.NickName</h6>
+                            <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Kullanıcı ID'si: @item2.UserID</h6>
                             <h6 class="card-text" style="font-size:small; text-align:right;">Yorum oluşturulma tarihi: @item2.CommentCreationDate</h6>
                         </div>
                     </div>
-                }*@
+                }
+                else
+                {
+                    <!--herhangi bir veri görüntülemesi yok-->
+                }
+
+            }
+            <hr style="width:75%;" />
+            <form class="form-control col-md-8 mx-auto" method="post">
+                <div class="form-group">
+                    <select hidden name="UserID">
+                        <option value="@Session["UserID"]">@Session["UserName"]</option>
+                    </select>
+                    <select hidden name="NickName">
+                        <option value="@Session["NickName"]">@Session["UserName"]</option>
+                    </select>
+                    <select hidden name="PostID">
+                        <option value="@item.PostID">@Session["UserName"]</option> <!--Her yorum için PostID eşleştirmesi-->
+                    </select>
+                    <select hidden name="CategoryID">
+                        <option value="@item.CategoryID">@Session["UserName"]</option> <!--Her yorum için CategoryID eşleştirmesi-->
+                    </select>
+                    <input hidden type="text" class="cc-date" name="CommentCreationDate">
+                </div>
+                <div class="row">
+                    <div class="form-group col-9">
+                        <input type="text" class="form-control" id="comment" name="CommentText" placeholder="Yanıtla...">
+                    </div>
+                    @if (Convert.ToInt32(Session["UserID"]) == 0)
+                    {
+                        <div class="col-3">
+                            <label style="color: red;">Yorum yapabilmek için lütfen giriş yapınız...</label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-3">
+                            <button type="submit" class="btn btn-success">Yorum Yap</button>
+                        </div>
+                    }
+                </div>
+            </form>
+            <hr style="border: 2px solid #0066CC;" />
+            <hr style="border: 2px solid #0066CC;" />
         }
+
     </div>
     <script>
         let PostCreationDate = new Date().toLocaleString();
         document.getElementById("pc-date").value = PostCreationDate;
         let CommentCreationDate = new Date().toLocaleString();
-        document.getElementById("cc-date").value = CommentCreationDate;
+        var x = document.querySelectorAll(".cc-date");
+        var i;
+        for (i = 0; i < x.length; i++) {
+
+            x[i].value = CommentCreationDate;
+
+        }
     </script>
 </body>
 </html>

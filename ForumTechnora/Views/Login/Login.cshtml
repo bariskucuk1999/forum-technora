@@ -34,24 +34,28 @@
 </head>
 <body>
     <div class="container">
-        <div class="col-md-4 mx-auto bg-success" id="login-form">
+        <div class="col-md-4 mx-auto bg-info" id="login-form">
             @using (Html.BeginForm("Login", "Login", FormMethod.Post))
             {
-                <h4 style="text-align:center; color:black;">Giriş Yap</h4>
-                <div class="form-group">
-                    <label for="email">E-posta:</label>
-                    <input type="email" class="form-control" id="email" name="Email" placeholder="E-posta adresiniz" required>
-                    <div class="invalid-feedback">E-posta alanı boş bırakılamaz.</div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Şifre:</label>
-                    <input type="password" class="form-control" id="password" name="Password" placeholder="Şifreniz" required>
-                    <div class="invalid-feedback">Şifre alanı boş bırakılamaz.</div>
-                </div>
-                <br />
-                <button type="submit" class="btn btn-warning">Giriş yap</button>
+                <form class="form-control">
+                    <h4 style="text-align:center; color:black;">Giriş Yap</h4>
+                    <div class="form-group">
+                        <label for="email">E-posta:</label>
+                        <input type="email" class="form-control" id="email" name="Email" placeholder="E-posta adresiniz" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Şifre:</label>
+                        <input type="password" class="form-control" id="password" name="Password" placeholder="Şifreniz" required>
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-warning">Giriş yap</button>
+                    @if (Convert.ToBoolean(Session["Error"]) == true)
+                    {
+                        <script>alert("Hatalı giriş...");</script>
+                    }
+                </form>
             }
-            <br />
+            <hr />
             <a class="dropdown-item" href="/SignUp/SignUp">Üye olmak istiyorum</a>
             <a class="dropdown-item" href="#">Şifremi unuttum</a>
         </div>

@@ -21,13 +21,15 @@
             font-weight: 600;
         }
         .invalid-feedback {
-            font-weight: 600;
+            font-weight:700;
+            font-size:smaller;
+            color: #a93226;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <form class="form-control col-md-4 mx-auto bg-success needs-validation" method="post" novalidate>
+        <form class="form-control col-md-4 mx-auto bg-info needs-validation" method="post" novalidate>
             <h4 style="text-align:center; color:black;">Üye Ol</h4>
             <div class="form-group">
                 <label for="username">Ad:</label>
@@ -52,7 +54,7 @@
             <div class="form-group">
                 <label for="password">Şifre:</label>
                 <input type="password" class="form-control" id="password" name="Password" placeholder="Yeni şifre" required>
-                <div class="invalid-feedback">Şifreniz minimum 8 karakterden oluşmalı ve en az bir harf ve rakam içermelidir.</div>
+                <div class="invalid-feedback">Şifre alanı boş bırakılamaz.</div>
             </div>
             <div class="form-group">
                 <label for="userbirthday">Doğum tarihi:</label>
@@ -60,7 +62,7 @@
                 <div class="invalid-feedback">Doğum tarihi alanı boş bırakılamaz.</div>
             </div>
             <div class="form-group">
-                <input hidden type="text" id="c-date" name="CreationDate">
+                <input hidden type="text" id="c-date" name="CreationDate" required>
             </div>
             <button class="btn btn-warning">Üye ol</button>
             <script>

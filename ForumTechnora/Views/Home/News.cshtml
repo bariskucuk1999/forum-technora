@@ -51,98 +51,98 @@
         </div>
         <br />
     }
-<div class="container">
-    <div class="row" target="_latest" data-aos="fade-up">
-        <div class="position-relative">
-            <img src="~/Content/Banner.jpg"
-                 alt="banner"
-                 class="img-fluid"
-                 style="border-radius: 5px 5px 5px 5px;" />
-            <div class="banner-content">
-                <div class="badge badge-danger fs-12 font-weight-bold mb-3">
-                    SICAK HABER
-                </div>
-                <h1 class="mb-0 text-white">Kripto Piyasalarında Hareketli Gün</h1>
-                <div class="fs-12">
-                    <span class="mr-2 text-white">Tarih: 01.01.2000</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-8 grid-margin">
-            <h3>En son haberler</h3>
-            <hr />
-            @foreach (var item in Model)
-            {
-                <div class="grid-margin" style="height:100px; width:200px;">
-                    <div class="card text-white" style="background-color:#0f1531;">
-                        <div class="card-body">
-                            <div class="d-flex border-bottom-blue align-items-start justify-content-between">
-                                <div class="badge">
-                                    <span class="badge badge-warning font-weight-bold">YENİ</span>
-                                </div>
-                                <div class="pr-3">
-                                    <label style="font-size:13px;">@item.NewsTitle</label>
-                                </div>
-                            </div>
-                        </div>
+    <div class="container">
+        <div class="row" target="_latest" data-aos="fade-up">
+            <div class="position-relative">
+                <img src="~/Content/Banner.jpg"
+                     alt="banner"
+                     class="img-fluid"
+                     style="border-radius: 5px 5px 5px 5px;" />
+                <div class="banner-content">
+                    <div class="badge badge-danger fs-12 font-weight-bold mb-3">
+                        SICAK HABER
+                    </div>
+                    <h1 class="mb-0 text-white">Kripto Piyasalarında Hareketli Gün</h1>
+                    <div class="fs-12">
+                        <span class="mr-2 text-white">Tarih: 01.01.2022</span>
                     </div>
                 </div>
-                <br />
-                cardNumber++;
-                if (cardNumber == 3)
+            </div>
+            <div class="col-xl-8 grid-margin">
+                <h3>En son haberler</h3>
+                <hr />
+                @foreach (var item in Model)
                 {
-                    break;
-                }
-            }
-        </div>
-    </div>
-    <marquee style="background-color: #0f1531; color: white; border-radius: 5px 5px 5px 5px;">BIST100: @Session["Bist100"], &emsp; DOLAR/TL: @Session["UsdTry"], &emsp; EURO/TL: @Session["EurTry"]</marquee>
-    <br />
-    <br />
-    <h3 style="text-align:center;">Haberlerin Detayları</h3>
-    <hr />
-    @foreach (var item in Model)
-    {
-        <div class="row" data-aos="fade-up">
-            <div class="col-lg-9 grid-margin">
-                <div class="card">
-                    <div class="card-body">
-                        @if (Convert.ToString(Session["UserName"]) == "Admin")
-                        {
-                        <a href="/Home/DeleteNews/@item.NewsID" class="btn btn-danger" style="float:right; font-size:small;">Haberi Kaldır</a>
-                        }
-                        <div class="row">
-                            <div class="col-sm-4 grid-margin">
-                                <div class="position-relative">
-                                    <div class="badge-positioned">
-                                        <span class="badge badge-danger font-weight-bold">HABER</span>
+                    <div class="grid-margin" style="height:100px; width:200px;">
+                        <div class="card text-white" style="background-color:#0f1531;">
+                            <div class="card-body">
+                                <div class="d-flex border-bottom-blue align-items-start justify-content-between">
+                                    <div class="badge">
+                                        <span class="badge badge-warning font-weight-bold">YENİ</span>
                                     </div>
-                                    <div class="rotate-img">
-                                        <img src="~/Content/Banner.jpg"
-                                             alt="thumb"
-                                             class="img-fluid" />
+                                    <div class="pr-3">
+                                        <label style="font-size:13px;">@item.NewsTitle</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-8  grid-margin">
-                                <h3 class="mb-2">
-                                    @item.NewsTitle
-                                </h3>
-                                <div class="mb-2">
-                                    <span class="mr-2" style="font-size:small;">Tarih: @item.NewsCreationDate</span>
+                        </div>
+                    </div>
+                    <br />
+                    cardNumber++;
+                    if (cardNumber == 3)
+                    {
+                        break;
+                    }
+                }
+            </div>
+        </div>
+        <marquee style="background-color: #0f1531; color: white; border-radius: 5px 5px 5px 5px;">BIST100: @Session["Bist100"], &emsp; DOLAR/TL: @Session["UsdTry"], &emsp; EURO/TL: @Session["EurTry"]</marquee>
+        <br />
+        <br />
+        <h3 style="text-align:center;">Haberlerin Detayları</h3>
+        <hr />
+        @foreach (var item in Model)
+        {
+            <div class="row" data-aos="fade-up">
+                <div class="col-lg-9 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            @if (Convert.ToString(Session["UserName"]) == "Admin")
+                            {
+                                <a href="/Home/DeleteNews/@item.NewsID" class="btn btn-danger" style="float:right; font-size:small;">Haberi Kaldır</a>
+                            }
+                            <div class="row">
+                                <div class="col-sm-4 grid-margin">
+                                    <div class="position-relative">
+                                        <div class="badge-positioned">
+                                            <span class="badge badge-danger font-weight-bold">HABER</span>
+                                        </div>
+                                        <div class="rotate-img">
+                                            <img src="~/Content/Banner.jpg"
+                                                 alt="thumb"
+                                                 class="img-fluid" />
+                                        </div>
+                                    </div>
                                 </div>
-                                <hr />
-                                <p class="mb-0">
-                                    @item.NewsText
-                                </p>
+                                <div class="col-sm-8  grid-margin">
+                                    <h3 class="mb-2">
+                                        @item.NewsTitle
+                                    </h3>
+                                    <div class="mb-2">
+                                        <span class="mr-2" style="font-size:small;">Tarih: @item.NewsCreationDate</span>
+                                    </div>
+                                    <hr />
+                                    <p class="mb-0">
+                                        @item.NewsText
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
     <script>
         let NewsCreationDate = new Date().toLocaleString();
         document.getElementById("nc-date").value = NewsCreationDate;

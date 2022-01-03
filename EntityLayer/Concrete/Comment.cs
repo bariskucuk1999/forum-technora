@@ -15,8 +15,8 @@ namespace EntityLayer.Concrete
         public string CommentText { get; set; }
         public string CommentCreationDate { get; set; }
         public int? UserID { get; set; }
+        public string NickName { get; set; }
         public virtual User User { get; set; }
-
         public int? PostID { get; set; }
         public virtual Post Post { get; set; }
     }

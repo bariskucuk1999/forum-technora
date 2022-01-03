@@ -22,30 +22,83 @@
         <hr />
         @foreach (Post item in Model.postFilter)
         {
-            <div class="card w-75 mx-auto">
-                <div class="card-body">
-                    <p class="card-text">@item.PostTitle</p>
-                    <hr />
-                    <p class="card-text">@item.PostText</p>
-                    <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Konu sahibi: @item.NickName</h6>
-                    <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Kullanıcı ID'si: @item.UserID</h6>
-                    <h6 class="card-text" style="font-size:small; text-align:right;">Post oluşturulma tarihi: @item.PostCreationDate</h6>
-                    <h6 class="card-text text-primary" style="font-size: small; text-align: right;">
-                        Kategori:
-                        @if (item.CategoryID == 1)
-                        {<span>Donanım</span>}
-                        else if (item.CategoryID == 2)
-                        {<span>Mobil</span>}
-                        else if (item.CategoryID == 3)
-                        {<span>Web</span>}
-                        else if (item.CategoryID == 4)
-                        {<span>Yazılım</span>}
-                        else
-                        {<span>Error</span>}
-                    </h6>
+            if (item.PostTitle == null || item.PostText == null)
+            {
+                <!--PostTitle veya PostText boş ise herhangi bir veri görüntülemesi yok-->
+            }
+            else
+            {
+                <div class="card w-75 mx-auto">
+                    <div class="card-body">
+                        <p class="card-text">@item.PostTitle</p>
+                        <hr />
+                        <p class="card-text">@item.PostText</p>
+                        <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Konu sahibi: @item.NickName</h6>
+                        <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Kullanıcı ID'si: @item.UserID</h6>
+                        <h6 class="card-text" style="font-size:small; text-align:right;">Post oluşturulma tarihi: @item.PostCreationDate</h6>
+                        <h6 class="card-text text-primary" style="font-size: small; text-align: right;">
+                            Kategori:
+                            @if (item.CategoryID == 1)
+                            {<span>Donanım</span>}
+                            else if (item.CategoryID == 2)
+                            {<span>Mobil</span>}
+                            else if (item.CategoryID == 3)
+                            {<span>Web</span>}
+                            else if (item.CategoryID == 4)
+                            {<span>Yazılım</span>}
+                            else
+                            {<span>Error</span>}
+                        </h6>
+                    </div>
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-sm-1 grid-margin" style="padding-top:22px; margin-right:30px;">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Beğenenler
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            @foreach (Vote item3 in Model.voteFilter)
+                            {
+                                if (item.PostID == item3.PostID)
+                                {
+                                    <h6 class="dropdown-item" style="font-size:small; text-align:left;">@item3.NickName bunu beğendi.</h6>
+                                }
+                                else
+                                {
+                                    <!--herhangi bir veri görüntülemesi yok-->
+                                }
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
-            <br />
+
+
+            foreach (Comment item2 in Model.commentFilter)
+            {
+                if (item.PostID == item2.PostID)
+                {
+                    <div class="card w-50 mx-auto">
+                        <div class="card-body">
+                            <p class="card-text">@item2.CommentText</p>
+                            <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Konu sahibi: @item2.NickName</h6>
+                            <h6 class="card-title" style="color: #ff6600; font-size: small; text-align: right;">Kullanıcı ID'si: @item2.UserID</h6>
+                            <h6 class="card-text" style="font-size:small; text-align:right;">Yorum oluşturulma tarihi: @item2.CommentCreationDate</h6>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <!--herhangi bir veri görüntülemesi yok-->
+                }
+
+            }
+            <hr style="border: 2px solid #0066CC;" />
+            <hr style="border: 2px solid #0066CC;" />
         }
         @foreach (News item2 in Model.newsFilter)
         {

@@ -51,25 +51,47 @@ namespace ForumTechnora.Controllers
             //    string weather = doc1.DocumentNode.SelectNodes("//div[@class='CurrentConditions--primary--2SVPh']").FirstOrDefault().InnerText;
             //    return weather;
             //}
+            //string TodayInHistoryScrapper()
+            //{
+            //    HtmlAgilityPack.HtmlDocument doc1 = web.Load("https://tr.wikipedia.org/wiki/Anasayfa");
+            //    int count = 0;
+            //    string temp = "";
+            //    string info = "";
+            //    foreach (var item in doc1.DocumentNode.SelectNodes("//td[@id='mp-itn']/ul"))
+            //    {
+            //        if (count == 0)
+            //        {
+            //            temp = temp + item.InnerText;
+            //            count++;
+            //            continue;
+            //        }
+            //        info = info + item.InnerText;
+
+            //    }
+            //    return info;
+            //}
             //Session["Bist100"] = Bist100Scrapper();
             //Session["UsdTry"] = UsdTryScrapper();
             //Session["EurTry"] = EurTryScrapper();
             //Session["Weather"] = WeatherScrapper();
+            //Session["TodayInHistory"] = TodayInHistoryScrapper();
             return View();
         }
         [HttpGet]
         public ActionResult Posts()
         {
             dynamic myModel = new ExpandoObject(); //Birden fazla modelin tek cshtml dosyasında kullanımı
-            myModel.postItems = um.GetPost();
-            myModel.commentItems = um.GetComment();
+            myModel.postItems = um.GetPost().OrderByDescending(c => c.PostID).ToList(); ;
+            myModel.commentItems = um.GetComment().OrderByDescending(d => d.CommentID).ToList();
+            myModel.voteItems = um.GetVote();
             return View(myModel);
         }
         [HttpPost]
-        public ActionResult Posts(Post p, Comment c)
+        public ActionResult Posts(Post p, Comment c, Vote v)
         {
             um.CreatePost(p);
             um.CreateComment(c);
+            um.CreateVote(v);
             return Redirect("/Home/Posts");
         }
         public ActionResult DeletePost(int id)
@@ -88,7 +110,7 @@ namespace ForumTechnora.Controllers
         public ActionResult News()
         {
             var newsItems = um.GetNews();
-            return View(newsItems.OrderByDescending(c=>c.NewsID).ToList());
+            return View(newsItems.OrderByDescending(c => c.NewsID).ToList());
         }
         [HttpPost]
         public ActionResult News(News n)
@@ -102,18 +124,38 @@ namespace ForumTechnora.Controllers
             um.DeleteNews(NewsIdValue);
             return Redirect("/Home/News");
         }
+        public ActionResult DeleteVote(int id)
+        {
+            var VoteIdValue = um.GetVoteID(id);
+            um.DeleteVote(VoteIdValue);
+            return Redirect("/Home/Posts");
+        }
         public ActionResult Search()
         {
             dynamic myModel1 = new ExpandoObject();
             string param = Request.QueryString["p"];
-            myModel1.postFilter = um.PostFilter(param);
-            myModel1.newsFilter = um.NewsFilter(param);
+            myModel1.postFilter = um.PostFilter(param).OrderByDescending(c => c.PostID);
+            myModel1.commentFilter = um.GetComment().OrderByDescending(d => d.CommentID).ToList();
+            myModel1.newsFilter = um.NewsFilter(param).OrderByDescending(e => e.NewsID);
+            myModel1.voteFilter = um.GetVote();
             return View(myModel1);
         }
         public ActionResult CategoryFilter()
         {
             int category = Convert.ToInt32(Request.QueryString["filter"]);
-            return View(um.CategoryFilter(category));
+            dynamic myModel = new ExpandoObject(); //Birden fazla modelin tek cshtml dosyasında kullanımı
+            myModel.postItems1 = um.CategoryFilter(category).OrderByDescending(c => c.PostID); //Category ID'ye göre post return etme
+            myModel.commentItems1 = um.GetComment().OrderByDescending(d => d.CommentID).ToList();
+            myModel.voteItems1 = um.GetVote();
+            return View(myModel);
+        }
+        [HttpPost]
+        public ActionResult CategoryFilter(Post p, Comment c, Vote v)
+        {
+            um.CreatePost(p);
+            um.CreateComment(c);
+            um.CreateVote(v);
+            return Redirect("/Home/Posts");
         }
     }
 }

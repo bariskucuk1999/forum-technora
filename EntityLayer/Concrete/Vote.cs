@@ -11,10 +11,11 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int VoteID { get; set; }
-        public DateTime VoteDate { get; set; }
+        public int VoteCount { get; set; }
         public int? UserID { get; set; }
+        public string NickName { get; set; }
         public virtual User User { get; set; }
-        public int PostID { get; set; }
+        public int? PostID { get; set; }
         public virtual Post Post { get; set; }
     }
 }

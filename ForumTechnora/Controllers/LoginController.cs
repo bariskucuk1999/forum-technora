@@ -47,6 +47,7 @@ namespace ForumTechnora.Controllers
             else
             {
                 //hatalı giriş
+                Session["Error"] = true;
                 return RedirectToAction("Login");
             }
         }

@@ -1,5 +1,4 @@
-﻿
-@{ Layout = null;
+﻿@{ Layout = null;
 }
 
 <!DOCTYPE html>
@@ -46,12 +45,12 @@
                 <br />
                 <span style="font-weight:bold; font-size:10px;">Gece modu</span>
             </label>
-            
-                <form class="form-inline" action="/Home/Search">
-                    <input class="form-control" type="search" name="p" placeholder="Forum Technora'da ara...">
-                    <button class="btn btn-info" type="submit">Ara</button>
-                </form>
-            
+
+            <form class="form-inline" action="/Home/Search">
+                <input class="form-control" type="search" name="p" placeholder="Forum Technora'da ara...">
+                <button class="btn btn-info" type="submit">Ara</button>
+            </form>
+
 
             @if (Session["UserName"] == null)
             {
