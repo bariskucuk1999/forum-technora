@@ -52,7 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\CommentManager.cs" />
+    <Compile Include="Concrete\NewsManager.cs" />
+    <Compile Include="Concrete\PostManager.cs" />
     <Compile Include="Concrete\UserManager.cs" />
+    <Compile Include="Concrete\VoteManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

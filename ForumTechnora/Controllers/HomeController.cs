@@ -13,6 +13,10 @@ namespace ForumTechnora.Controllers
     public class HomeController : Controller
     {
         UserManager um = new UserManager();
+        CommentManager cm = new CommentManager();
+        NewsManager nm = new NewsManager();
+        PostManager pm = new PostManager();
+        VoteManager vm = new VoteManager();
 
         public ActionResult Index()
         {
@@ -81,80 +85,80 @@ namespace ForumTechnora.Controllers
         public ActionResult Posts()
         {
             dynamic myModel = new ExpandoObject(); //Birden fazla modelin tek cshtml dosyasında kullanımı
-            myModel.postItems = um.GetPost().OrderByDescending(c => c.PostID).ToList(); ;
-            myModel.commentItems = um.GetComment().OrderByDescending(d => d.CommentID).ToList();
-            myModel.voteItems = um.GetVote();
+            myModel.postItems = pm.GetPost().OrderByDescending(c => c.PostID).ToList(); ;
+            myModel.commentItems = cm.GetComment().OrderByDescending(d => d.CommentID).ToList();
+            myModel.voteItems = vm.GetVote();
             return View(myModel);
         }
         [HttpPost]
         public ActionResult Posts(Post p, Comment c, Vote v)
         {
-            um.CreatePost(p);
-            um.CreateComment(c);
-            um.CreateVote(v);
+            pm.CreatePost(p);
+            cm.CreateComment(c);
+            vm.CreateVote(v);
             return Redirect("/Home/Posts");
         }
         public ActionResult DeletePost(int id)
         {
-            var PostIdValue = um.GetPostID(id);
-            um.DeletePost(PostIdValue);
+            var PostIdValue = pm.GetPostID(id);
+            pm.DeletePost(PostIdValue);
             return Redirect("/Home/Posts");
         }
         public ActionResult DeleteComment(int id)
         {
-            var CommentIdValue = um.GetCommentID(id);
-            um.DeleteComment(CommentIdValue);
+            var CommentIdValue = cm.GetCommentID(id);
+            cm.DeleteComment(CommentIdValue);
             return Redirect("/Home/Posts");
         }
         [HttpGet]
         public ActionResult News()
         {
-            var newsItems = um.GetNews();
+            var newsItems = nm.GetNews();
             return View(newsItems.OrderByDescending(c => c.NewsID).ToList());
         }
         [HttpPost]
         public ActionResult News(News n)
         {
-            um.CreateNews(n);
+            nm.CreateNews(n);
             return Redirect("/Home/News");
         }
         public ActionResult DeleteNews(int id)
         {
-            var NewsIdValue = um.GetNewsID(id);
-            um.DeleteNews(NewsIdValue);
+            var NewsIdValue = nm.GetNewsID(id);
+            nm.DeleteNews(NewsIdValue);
             return Redirect("/Home/News");
         }
         public ActionResult DeleteVote(int id)
         {
-            var VoteIdValue = um.GetVoteID(id);
-            um.DeleteVote(VoteIdValue);
+            var VoteIdValue = vm.GetVoteID(id);
+            vm.DeleteVote(VoteIdValue);
             return Redirect("/Home/Posts");
         }
         public ActionResult Search()
         {
             dynamic myModel1 = new ExpandoObject();
             string param = Request.QueryString["p"];
-            myModel1.postFilter = um.PostFilter(param).OrderByDescending(c => c.PostID);
-            myModel1.commentFilter = um.GetComment().OrderByDescending(d => d.CommentID).ToList();
-            myModel1.newsFilter = um.NewsFilter(param).OrderByDescending(e => e.NewsID);
-            myModel1.voteFilter = um.GetVote();
+            myModel1.postFilter = pm.PostFilter(param).OrderByDescending(c => c.PostID);
+            myModel1.commentFilter = cm.GetComment().OrderByDescending(d => d.CommentID).ToList();
+            myModel1.newsFilter = nm.NewsFilter(param).OrderByDescending(e => e.NewsID);
+            myModel1.voteFilter = vm.GetVote();
             return View(myModel1);
         }
         public ActionResult CategoryFilter()
         {
             int category = Convert.ToInt32(Request.QueryString["filter"]);
             dynamic myModel = new ExpandoObject(); //Birden fazla modelin tek cshtml dosyasında kullanımı
-            myModel.postItems1 = um.CategoryFilter(category).OrderByDescending(c => c.PostID); //Category ID'ye göre post return etme
-            myModel.commentItems1 = um.GetComment().OrderByDescending(d => d.CommentID).ToList();
-            myModel.voteItems1 = um.GetVote();
+            myModel.postItems1 = pm.CategoryFilter(category).OrderByDescending(c => c.PostID); //Category ID'ye göre post return etme
+            myModel.commentItems1 = cm.GetComment().OrderByDescending(d => d.CommentID).ToList();
+            myModel.voteItems1 = vm.GetVote();
             return View(myModel);
         }
         [HttpPost]
         public ActionResult CategoryFilter(Post p, Comment c, Vote v)
         {
-            um.CreatePost(p);
-            um.CreateComment(c);
-            um.CreateVote(v);
+            pm.CreatePost(p);
+            cm.CreateComment(c);
+            vm.CreateVote(v);
             return Redirect("/Home/Posts");
         }
     }
